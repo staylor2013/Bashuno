@@ -1,6 +1,8 @@
 const readline = require('readline');
 const colors = ['red', 'yellow', 'blue', 'green'];
-const numbers = [...Array(10).keys()
+const numbers = [...Array(10).keys()];
+const specials = ['+2', 'reverse', 'block'];
+const deck = [];
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -13,3 +15,14 @@ rl.question('Welcome to UNO! Press Enter to start...', () => {
   createdeck();
 });
 
+function createdeck() {
+  for(let color in colors){
+    for(let number in numbers){
+      deck.push({color, type: Number, value: number});
+      deck.push({color, type: Number, value: number});
+    }
+    for(let special in specials){
+      deck.push({color, type})
+    }
+  }
+}
