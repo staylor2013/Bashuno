@@ -1,6 +1,6 @@
 const readline = require('readline');
 const colors = ['red', 'yellow', 'blue', 'green'];
-const numbers = 
+const numbers = [...Array(10).keys()
 
 const rl = readline.createInterface({
   input: process.stdin,
