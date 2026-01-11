@@ -21,8 +21,16 @@ function createdeck() {
       deck.push({color, type: Number, value: number});
       deck.push({color, type: Number, value: number});
     }
-    for(let special in specials){
-      deck.push({color, type})
-    }
   }
+    for(let special in specials){
+      deck.push({color, type:special});
+      deck.push({color, type:special});
+    }
+    for (let i = 0; i < 4; i++;){o
+      deck.push({color: 'wild', tupe: 'wild'});
+      deck.push({color: 'wild', type: '+4'});
+    }
+    deck.push({color: 'wild', type:'shuffle'});
+
+  for
 }
