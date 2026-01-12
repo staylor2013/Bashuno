@@ -36,6 +36,11 @@ function createdeck() {
     const j = Math.floor(Math.random() * (i + 1));
     [deck[i], deck[j]] = [deck[j], deck[i]];
   }
+  rl.question('The deck is shuffled. Press enter to continue.', () => {
+    cosole.log('Dealing cards...');
+    rl.close;
+    dealcards()
+  })
 }
 function dealcards(array=deck){
   
