@@ -11,16 +11,8 @@ const numbers = [...Array(10).keys()];
 const specials = ['+2', 'reverse', 'block'];
 const deck = [];
 
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
-
-rl.question('Welcome to UNO! Press Enter to start...', () => {
-  console.log('Game starting...');
-  rl.close();
+  alert('generating deck...')
   createdeck();
-});
 
 function createdeck() {
   for(let color in colors){
@@ -43,16 +35,11 @@ function createdeck() {
     const j = Math.floor(Math.random() * (i + 1));
     [deck[i], deck[j]] = [deck[j], deck[i]];
   }
-  rl.question('The deck is shuffled. Press enter to continue.', () => {
-    cosole.log('Dealing cards...');
-    rl.close;
+    alert('Dealing cards...');
     dealcards()
-  })
-}
 function dealcards(array=deck){
   
 }
-
     </script>
   </body>
 </html>
