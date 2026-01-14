@@ -19,22 +19,22 @@ function createdeck() {
     for(let number in numbers){
       deck.push({color, type: Number, value: number});
       deck.push({color, type: Number, value: number});
-    }
-  }
+    };
+  };
     for(let special in specials){
       deck.push({color, type:special});
       deck.push({color, type:special});
-    }
+    };
     for (let i = 0; i < 4; i++;){o
       deck.push({color: 'wild', tupe: 'wild'});
       deck.push({color: 'wild', type: '+4'});
-    }
+    };
     deck.push({color: 'wild', type:'shuffle'});
 
   for (let i = deck.length - 1; i > 0, i--){
     const j = Math.floor(Math.random() * (i + 1));
     [deck[i], deck[j]] = [deck[j], deck[i]];
-  }
+  };
     alert('Dealing cards...');
     dealcards();
 function dealcards(array=deck){
