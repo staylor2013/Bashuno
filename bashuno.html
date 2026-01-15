@@ -57,11 +57,19 @@ function createdeck() {
     dealcards();
 function dealcards(array=deck){
   for(let i=0; i<4; i++){
-    for(let j = 0; i < 28; i++){
+    for(let j = 0; j < 7; j++){
       players[i].hand.push(deck.shift());
     }
   }
-  HAND.innerHTML=players[3].hand;
+  HAND.innerHTML = players[3].hand
+  .map(card => {
+    if (card.type === 'number') {
+      return card.color + " " + card.value;
+    } else {
+      return card.color + " " + card.type;
+    }
+  })
+  .join("<br>");
 }
     </script>
   </body>
