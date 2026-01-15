@@ -1,76 +1,102 @@
-<DOCTYPE html>
-<html>
-  <head>
-    
-  </head>
-  <body>
-    <p id="hand">hand</p>
-    <p id="lastcard">lastcard</p>
-    <script>
-      alert('Starting game...');
-      const HAND = document.getElementById('hand');
-      const lastcard = document.getElementById('lastcard');
-const colors = ['red', 'yellow', 'blue', 'green'];
-const numbers = [...Array(10).keys()];
-const specials = ['+2', 'reverse', 'block'];
-const deck = [];
-      const players = [
-        {
-          hand:[]
-        },
-        {
-        hand:[]
-          },
-      {
-        hand:[]
-      },
-      {
-        hand:[]
-      },
-      ];
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bashuno Game</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        #hand, #lastcard { margin: 10px 0; }
+        button { margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Bashuno Game</h1>
+    <p id="hand">Your hand will appear here.</p>
+    <p id="lastcard">Last card played will appear here.</p>
+    <button id="play">Play top card</button>
 
-  alert('generating deck...');
-  createdeck();
+    <script defer>
+        // Elements
+        const HAND = document.getElementById('hand');
+        const lastcard = document.getElementById('lastcard');
+        const playBtn = document.getElementById('play');
 
-function createdeck() {
-  for(let color of colors){
-    for(let number of numbers){
-      deck.push({color, type: 'number', value: number});
-      deck.push({color, type: 'number', value: number});
-    };
-  };
-    for(let special of specials){
-      deck.push({color, type:special});
-      deck.push({color, type:special});
-    };
-    for (let i = 0; i < 4; i++){
-      deck.push({color: 'wild', type: 'wild'});
-      deck.push({color: 'wild', type: '+4'});
-    };
-    deck.push({color: 'wild', type:'shuffle'});
+        // Deck and players
+        const colors = ['red', 'yellow', 'blue', 'green'];
+        const numbers = [...Array(10).keys()]; // 0-9
+        const specials = ['+2', 'reverse', 'block'];
+        const deck = [];
+        const players = [
+            { hand: [] },
+            { hand: [] },
+            { hand: [] },
+            { hand: [] },
+        ];
 
-  for (let i = deck.length - 1; i > 0; i--){
-    const j = Math.floor(Math.random() * (i + 1));
-    [deck[i], deck[j]] = [deck[j], deck[i]];
-  };
-    alert('Dealing cards...');
-    dealcards();
-function dealcards(array=deck){
-  for(let i=0; i<4; i++){
-    for(let j = 0; j < 7; j++){
-      players[i].hand.push(deck.shift());
-    }
-  }
-  HAND.innerHTML = players[3].hand
-  .map(card => {
-    if (card.type === 'number') {
-      return card.color + " " + card.value;
-    } else {
-      return card.color + " " + card.type;
-    }
-  })
-  .join("<br>");
-}
+        alert('Starting game...');
+
+        // Create deck
+        function createDeck() {
+            for (let color of colors) {
+                for (let number of numbers) {
+                    deck.push({color, type: 'number', value: number});
+                    deck.push({color, type: 'number', value: number});
+                }
+            }
+            for (let color of colors) {
+                for (let special of specials) {
+                    deck.push({color, type: special});
+                    deck.push({color, type: special});
+                }
+            }
+            for (let i = 0; i < 4; i++) {
+                deck.push({color: 'wild', type: 'wild'});
+                deck.push({color: 'wild', type: '+4'});
+            }
+            deck.push({color: 'wild', type: 'shuffle'});
+
+            // Shuffle deck
+            for (let i = deck.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [deck[i], deck[j]] = [deck[j], deck[i]];
+            }
+        }
+
+        // Deal cards to players
+        function dealCards() {
+            for (let i = 0; i < 4; i++) {
+                for (let j = 0; j < 7; j++) {
+                    players[i].hand.push(deck.shift());
+                }
+            }
+            updateHandDisplay(3); // Show player 3’s hand
+        }
+
+        // Update displayed hand
+        function updateHandDisplay(playerIndex) {
+            HAND.innerHTML = players[playerIndex].hand
+                .map(card => card.type === 'number' ? `${card.color} ${card.value}` : `${card.color} ${card.type}`)
+                .join("<br>");
+        }
+
+        // Play a card (removes top card from player 3’s hand and shows it)
+        function playCard() {
+            const card = players[3].hand.shift();
+            if (!card) {
+                alert("No more cards to play!");
+                return;
+            }
+            lastcard.textContent = card.type === 'number' ? `${card.color} ${card.value}` : `${card.color} ${card.type}`;
+            updateHandDisplay(3);
+        }
+
+        // Initialize game
+        createDeck();
+        dealCards();
+
+        // Button to play card
+        playBtn.addEventListener('click', playCard);
+
     </script>
-  </body>
+</body>
 </html>
