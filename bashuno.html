@@ -4,7 +4,7 @@
     
   </head>
   <body>
-    <p id="hand"hand</p>
+    <p id="hand">hand</p>
     <p id="lastcard">lastcard</p>
     <script>
       alert('Starting game...');
@@ -17,51 +17,51 @@ const deck = [];
       const players = [
         {
           hand:[]
-        }
+        },
         {
         hand:[]
-          }
+          },
       {
         hand:[]
-      }
+      },
       {
         hand:[]
-      }
+      },
       ];
 
   alert('generating deck...');
   createdeck();
 
 function createdeck() {
-  for(let color in colors;){
-    for(let number in numbers;){
+  for(let color of colors){
+    for(let number of numbers){
       deck.push({color, type: Number, value: number});
       deck.push({color, type: Number, value: number});
     };
   };
-    for(let special in specials;){
+    for(let special of specials){
       deck.push({color, type:special});
       deck.push({color, type:special});
     };
-    for (let i = 0; i < 4; i++;){
-      deck.push({color: 'wild', tupe: 'wild'});
+    for (let i = 0; i < 4; i++){
+      deck.push({color: 'wild', type: 'wild'});
       deck.push({color: 'wild', type: '+4'});
     };
     deck.push({color: 'wild', type:'shuffle'});
 
-  for (let i = deck.length - 1; i > 0; i--;){
+  for (let i = deck.length - 1; i > 0; i--){
     const j = Math.floor(Math.random() * (i + 1));
     [deck[i], deck[j]] = [deck[j], deck[i]];
   };
     alert('Dealing cards...');
     dealcards();
 function dealcards(array=deck){
-  for(let i=0, i<4, i++;){
-    for(let j = 0, i < 28, i++;){
-      players[i].hand.concat(deck[0]);
+  for(let i=0, i<4, i++){
+    for(let j = 0, i < 28, i++){
+      players[i].hand.push(deck.shift());
     }
   }
-  HAND.innerhtml=players[4].hand;
+  HAND.innerHTML=players[4].hand;
 }
     </script>
   </body>
