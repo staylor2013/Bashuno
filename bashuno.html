@@ -35,8 +35,8 @@ const deck = [];
 function createdeck() {
   for(let color of colors){
     for(let number of numbers){
-      deck.push({color, type: Number, value: number});
-      deck.push({color, type: Number, value: number});
+      deck.push({color, type: 'number', value: number});
+      deck.push({color, type: 'number', value: number});
     };
   };
     for(let special of specials){
@@ -56,12 +56,12 @@ function createdeck() {
     alert('Dealing cards...');
     dealcards();
 function dealcards(array=deck){
-  for(let i=0, i<4, i++){
-    for(let j = 0, i < 28, i++){
+  for(let i=0; i<4; i++){
+    for(let j = 0; i < 28; i++){
       players[i].hand.push(deck.shift());
     }
   }
-  HAND.innerHTML=players[4].hand;
+  HAND.innerHTML=players[3].hand;
 }
     </script>
   </body>
